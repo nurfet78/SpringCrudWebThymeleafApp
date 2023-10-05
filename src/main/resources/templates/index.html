@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Система управления сотрудниками</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://spring.io/">
+                <img src="/images/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                Spring Web MVC
+            </a>
+        </div>
+    </nav>
+    <div class="container my-2">
+        <a th:href="@{/showNewEmployeeForm}" class="btn btn-primary mb-3">Добавить сотрудника</a>
+
+        <table class="table table-bordered table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Email</th>
+                    <th>Редактировать/удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="emp : ${employeeList}">
+                    <td th:text="${emp.first_name}"></td>
+                    <td th:text="${emp.last_name}"></td>
+                    <td th:text="${emp.email}"></td>
+                    <td>
+                        <a th:href="@{/deleteEmployee(id=${emp.id})}"
+                           class="btn btn-danger" style="float: right">Удалить</a>
+
+                        <a th:href="@{/showFormForUpdate(id=${emp.id})}"
+                        class="btn btn-primary me-2" style="float: right">Редактировать</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

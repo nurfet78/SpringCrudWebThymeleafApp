@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый сотрудник</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card mx-auto mt-5" style="width: 60rem;">
+        <div class="card-body">
+            <h5 class="card-title">Новый сотрудник</h5>
+            <form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
+            class="row g-3" method="post">
+                <div class="col-md-4">
+                    <label for="val1" class="form-label">Имя</label>
+                    <input type="text" class="form-control" id="val1" th:field="*{first_name}">
+                    <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="val2" class="form-label">Фамилия</label>
+                    <input type="text" class="form-control" id="val2"  th:field="*{last_name}">
+                    <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="val3" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="val3"  th:field="*{email}">
+                    <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary me-2" type="submit">Выполнить</button>
+                    <a th:href="@{/}" class="btn btn-secondary">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
